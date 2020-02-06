@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import "./Product.scss";
+import BtnAddToCart from "./BtnAddToCart";
 
 class Product extends Component {
     render() {
@@ -7,13 +9,14 @@ class Product extends Component {
         const stock = product.stock - product.qte;
 
         return (
-            <article>
+            <article className="product">
                 <h2>{product.name}</h2>
                 <img src={product.image} alt=""/>
-                <div>En stock: {stock}</div>
-                <button onClick={event => this.props.addToCart(product)} disabled={stock ===0}>
+                <div>Prix : {product.price} €</div>
+                <div>Stock : {stock}</div>
+                <BtnAddToCart addToCart={p => this.props.addToCart(p)} product={product}>
                     Ajouter au panier
-                </button>
+                </BtnAddToCart>
             </article>
         );
     }

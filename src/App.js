@@ -32,24 +32,35 @@ class App extends Component {
                     price: 30,
                     stock: 15,
                     qte: 3
-                },
-
+                }
             ]
-        }
+        };
     }
 
     addToCart(product) {
         let products = [...this.state.products]; // Créer une copie du tableau
         products[this.state.products.indexOf(product)].qte++;
-        this.setState({ products: products});
+        this.setState({ products: products });
+    }
 
+    removeFromCart(product) {
+        let products = [...this.state.products]; // Créer une copie du tableau
+        products[this.state.products.indexOf(product)].qte--;
+        this.setState({ products: products });
     }
 
     render() {
         return (
             <main className="main-container">
-                <ProductList products={this.state.products} addToCart={p => this.addToCart(p)}/>
-                <Cart products={this.state.products.filter(product => product.qte > 0)}/>
+                <ProductList
+                    products={this.state.products}
+                    addToCart={p => this.addToCart(p)}
+                />
+                <Cart
+                    products={this.state.products.filter(product => product.qte > 0)}
+                    removeFromCart={p => this.removeFromCart(p)}
+                    addToCart={p => this.addToCart(p)}
+                />
             </main>
         );
     }

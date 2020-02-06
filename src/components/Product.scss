@@ -1,0 +1,15 @@
+.product {
+  width: 250px;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: lightgrey;
+  h2 {
+    margin-top: 0;
+    text-align: center;
+  }
+  img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
