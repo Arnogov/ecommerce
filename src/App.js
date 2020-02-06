@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ProductList from "./components/ProductList";
+import "./App.scss";
 
 class App extends Component {
 
@@ -31,9 +32,9 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <main className="main-container">
                 <ProductList products={this.state.products}/>
-            </div>
+            </main>
         );
     }
 }
