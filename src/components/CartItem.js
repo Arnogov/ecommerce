@@ -11,8 +11,9 @@ class CartItem extends Component {
                 <img src={product.image} alt={product.name}/>
                 <div className="cart-item-content">
                     <h3>{product.name}</h3>
-                    <div>Prix : {product.price}€</div>
+                    <div>Prix : {product.price} €</div>
                     <div>Quantité : {product.qte}</div>
+                    <div>Montant total : {product.price * product.qte} €</div>
                 </div>
             </article>
         );
