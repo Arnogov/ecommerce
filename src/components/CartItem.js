@@ -12,7 +12,7 @@ class CartItem extends Component {
                 <div className="cart-item-content">
                     <h3>{product.name}</h3>
                     <div>Prix : {product.price}€</div>
-                    <div>Qte : {product.qte}</div>
+                    <div>Quantité : {product.qte}</div>
                 </div>
             </article>
         );
