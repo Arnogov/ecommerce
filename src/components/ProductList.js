@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Product from "./Product";
 import "./ProductList.scss";
 
+// TODO: Ajouter un filtre par prix avec input range
 class ProductList extends Component {
     render() {
 
