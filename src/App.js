@@ -5,54 +5,45 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import "./App.scss";
 import Contact from "./components/Contact";
+import ProductItem from "./components/ProductItem";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            products: [
-                {
-                    id: 1,
-                    name: 'Appareil photo',
-                    image: 'https://i.picsum.photos/id/250/200/300.jpg',
-                    price: 250.50,
-                    stock: 3,
-                    qte: 1
-                },
-                {
-                    id: 2,
-                    name: 'Bateau',
-                    image: 'https://i.picsum.photos/id/211/200/300.jpg',
-                    price: 75000,
-                    stock: 1,
-                    qte: 0
-                },
-                {
-                    id: 3,
-                    name: 'Théière',
-                    image: 'https://i.picsum.photos/id/225/200/300.jpg',
-                    price: 30,
-                    stock: 15,
-                    qte: 3
-                }
-            ]
+            products: [],
+            loading: true
         };
+    }
+
+    componentDidMount() {
+        fetch('http://127.0.0.1:8000/product/')
+            .then(response => response.json())
+            .then(data => this.setState({products: data.map(p => {
+                    p.qte = 0;
+                    return p;
+                }), loading: false }))
     }
 
     addToCart(product) {
         let products = [...this.state.products]; // Créer une copie du tableau
         products[this.state.products.indexOf(product)].qte++;
-        this.setState({products: products});
+        this.setState({ products: products });
     }
 
     removeFromCart(product) {
         let products = [...this.state.products]; // Créer une copie du tableau
         products[this.state.products.indexOf(product)].qte--;
-        this.setState({products: products});
+        this.setState({ products: products });
     }
 
     render() {
+
+        if (this.state.loading) {
+            return <loading/>
+        }
+
         return (
             <main className="main-container">
                 <h1>Mon site e-commerce</h1>
@@ -71,12 +62,14 @@ class App extends Component {
                         />
                     </Route>
                     <Route path="/contact" component={Contact}/>
+                    <Route path="/product/:id" component={ProductItem}/>
                     <Cart
                         products={this.state.products.filter(product => product.qte > 0)}
                         removeFromCart={p => this.removeFromCart(p)}
                         addToCart={p => this.addToCart(p)}
                     />
                 </div>
+
             </main>
         );
     }

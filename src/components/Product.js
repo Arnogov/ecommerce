@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "./Product.scss";
 import BtnAddToCart from "./BtnAddToCart";
+import {Link} from "react-router-dom";
 
 class Product extends Component {
     render() {
@@ -17,6 +18,9 @@ class Product extends Component {
                 <BtnAddToCart addToCart={p => this.props.addToCart(p)} product={product}>
                     Ajouter au panier
                 </BtnAddToCart>
+                <Link to={"/product/" + product.id}>
+                    Afficher
+                </Link>
             </article>
         );
     }
